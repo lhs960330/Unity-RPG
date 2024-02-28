@@ -58378,6 +58378,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   range: 3
+  rangeAngle: 90
   damage: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
