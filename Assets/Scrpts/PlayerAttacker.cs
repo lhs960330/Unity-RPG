@@ -43,7 +43,7 @@ public class PlayerAttacker : MonoBehaviour
 
             IDamagable damagable = colliders[i].GetComponent<IDamagable>();
             damagable?.TakeDamage(damage);
-
+            
         }
     }
 
