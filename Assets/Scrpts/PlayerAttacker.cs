@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerAttacker : MonoBehaviour
 {
+    [SerializeField] bool debug;
     [SerializeField] Animator animator;
     [SerializeField] LayerMask layerMask;
     [SerializeField] float range;
@@ -43,7 +44,7 @@ public class PlayerAttacker : MonoBehaviour
 
             IDamagable damagable = colliders[i].GetComponent<IDamagable>();
             damagable?.TakeDamage(damage);
-            
+
         }
     }
 
@@ -62,7 +63,10 @@ public class PlayerAttacker : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, range);
+        if (debug)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, range);
+        }
     }
 }
