@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PlayerAttacker : MonoBehaviour
@@ -58,6 +59,10 @@ public class PlayerAttacker : MonoBehaviour
      }*/
     private void OnAttack(InputValue value)
     {
+        // UI를 클릭하고 있을때 커멘드가 안되도록 해준다.
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
         Attack();
     }
 
