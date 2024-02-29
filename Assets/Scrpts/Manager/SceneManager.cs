@@ -63,7 +63,7 @@ public class SceneManager : MonoBehaviour
         //while (oper.isDone== false) 얘는 allowSceneActivation가 false여서 계속 false로 가게된다.
         while (oper.isDone == false)
         {
-            loadingBar.value = Mathf.Lerp(0f, 0.5f, oper.progress);
+            loadingBar.value = oper.progress; //Mathf.Lerp(0f, 0.5f, oper.progress); 이런식으로 안써도됨
             yield return null;
         }
         // Space를 누르면 GameScene으로 가게하기

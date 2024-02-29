@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GameScene : BaseScene
 {
@@ -19,12 +20,14 @@ public class GameScene : BaseScene
         Manager.Scene.SetLoadingBarValue(0.9f);
         Debug.Log("오브젝트 풀 준비");
         yield return new WaitForSecondsRealtime(0.1f);
+        // 로딩중에 몬스터 스폰
         for (int i = 0; i < count; i++)
-        {
-            Vector2 randomOffset = Random.insideUnitCircle * 3;
+        {           
+            Vector2 randomOffset = Random.insideUnitCircle * 10;
             Vector3 spawnPos = spawnrPoint.position + new Vector3(randomOffset.x, 0, randomOffset.y);
-            
-            Monster monster = Instantiate(monsterPrefab, spawnPos, Quaternion.identity);
+            // Quaternion spawnRot = Random.rotation;
+            Quaternion spawnRot = Quaternion.Euler(0, Random.Range(0, 360), 0);
+            Monster monster = Instantiate(monsterPrefab, spawnPos, spawnRot);
 
             yield return new WaitForSecondsRealtime(0.2f);
         }

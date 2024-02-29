@@ -6,12 +6,17 @@ public class PlayerMover : MonoBehaviour
     [SerializeField] CharacterController controller;
     [SerializeField] Animator animator;
     [SerializeField] float moveSpeed;
-
+    [SerializeField] float jumpSpeed;
+    private float ySpeed;
     private Vector3 moveDir;
+
+
 
     private void Update()
     {
         Move();
+        ySpeed += Physics.gravity.y * Time.deltaTime;
+        controller.Move(Vector3.up * ySpeed * Time.deltaTime);
     }
 
     private void Move()
@@ -42,6 +47,18 @@ public class PlayerMover : MonoBehaviour
         }
     }
 
+    public void Jump()
+    {
+        if (controller.isGrounded)
+        {
+            ySpeed = jumpSpeed;
+            controller.Move(Vector3.up * jumpSpeed * Time.deltaTime);
+        }
+    }
+    private void OnJump(InputValue value)
+    {
+        Jump();
+    }
     private void OnMove(InputValue value)
     {
         Vector2 input = value.Get<Vector2>();
