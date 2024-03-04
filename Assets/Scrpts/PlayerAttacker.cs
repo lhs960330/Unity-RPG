@@ -20,6 +20,7 @@ public class PlayerAttacker : MonoBehaviour
         // 시작할때 먼저 계산 해놓는다.
         cosRange = Mathf.Cos(rangeAngle * Mathf.Deg2Rad);
     }
+
     private void Attack()
     {
 

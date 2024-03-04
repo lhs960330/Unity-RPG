@@ -1,0 +1,48 @@
+{
+    "name": "플레이어",
+    "level": 1,
+    "gold": 0,
+    "exp": 0,
+    "skilPoint": 3,
+    "sceneSaved": [
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+    ],
+    "gmaeSceneData": {
+        "playerPos": {
+            "x": -27.670000076293947,
+            "y": 0.09999990463256836,
+            "z": -23.81999969482422
+        }
+    }
+}

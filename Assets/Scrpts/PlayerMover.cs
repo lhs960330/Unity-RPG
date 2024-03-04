@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,7 +19,7 @@ public class PlayerMover : MonoBehaviour
         ySpeed += Physics.gravity.y * Time.deltaTime;
         controller.Move(Vector3.up * ySpeed * Time.deltaTime);
     }
-
+   
     private void Move()
     {
         // 틀린 예시

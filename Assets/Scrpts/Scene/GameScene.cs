@@ -4,12 +4,14 @@ using UnityEngine.UIElements;
 
 public class GameScene : BaseScene
 {
-    [SerializeField] Monster monsterPrefab;
+    [SerializeField] Transform player;
+    [SerializeField] CharacterController characterController;
+    /*[SerializeField] Monster monsterPrefab;
     [SerializeField] Transform spawnrPoint;
-    [SerializeField] int count;
+    [SerializeField] int count;*/
     public override IEnumerator LoadingRoutine()
     {
-        // fake loding
+        /*// fake loding
         yield return new WaitForSecondsRealtime(1f);
         Manager.Scene.SetLoadingBarValue(0.6f);
         Debug.Log("GameScene Load");
@@ -22,7 +24,7 @@ public class GameScene : BaseScene
         yield return new WaitForSecondsRealtime(0.1f);
         // 로딩중에 몬스터 스폰
         for (int i = 0; i < count; i++)
-        {           
+        {
             Vector2 randomOffset = Random.insideUnitCircle * 10;
             Vector3 spawnPos = spawnrPoint.position + new Vector3(randomOffset.x, 0, randomOffset.y);
             // Quaternion spawnRot = Random.rotation;
@@ -33,10 +35,27 @@ public class GameScene : BaseScene
         }
         Manager.Scene.SetLoadingBarValue(1f);
         yield return new WaitForSecondsRealtime(0.1f);
-        Debug.Log("게임씬 로딩 끝!");
+        Debug.Log("게임씬 로딩 끝!");*/
+        yield return null;
     }
     public void ToTitleScene()
     {
+        Manager.Data.gameData.sceneSaved[Manager.Scene.GetCurSceneIndex()] = true;
         Manager.Scene.LoadScene("TitleScene");
     }
+    public override void SceneSave()
+    {
+        Manager.Data.gameData.gmaeSceneData.playerPos = player.position;
+        Manager.Data.SaveData();
+    }
+    public override void SceneLoad()
+    {
+        if (Manager.Data.gameData.sceneSaved[Manager.Scene.GetCurSceneIndex()] == false)
+            return;
+        Manager.Data.LoadData();
+        characterController.enabled = false;
+        player.position = Manager.Data.gameData.gmaeSceneData.playerPos;
+        characterController.enabled = true;
+    }
+
 }

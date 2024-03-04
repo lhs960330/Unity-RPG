@@ -54,6 +54,9 @@ public class SceneManager : MonoBehaviour
 
         Time.timeScale = 0f;
         loadingBar.gameObject.SetActive(true);
+        BaseScene prevScene=GetCurScene();
+        // 씬에서 세이브
+        prevScene.SceneSave();
         // 백그라운드로 로딩씬을 해주고 로딩을 다하면 GameScene으로 넘어가게해준다.
         AsyncOperation oper = UnitySceneManager.LoadSceneAsync(sceneName);
         // progress = 로딩되는 퍼센트를 알수있다.
@@ -72,6 +75,8 @@ public class SceneManager : MonoBehaviour
         // yield return new WaitForSeconds(0.1f);
 
         BaseScene curScene = GetCurScene();
+        // 씬에서 로드
+        curScene.SceneLoad();
         // 여기 코루틴 진행하다 저기 코루틴 진행하다 다시 돌아옴
         yield return curScene.LoadingRoutine();
 
@@ -93,5 +98,10 @@ public class SceneManager : MonoBehaviour
     {
         loadingBar.value = value;
     }
-
+    
+    public int GetCurSceneIndex()
+    {
+        // 현재 씬의 몇번째 index인지
+        return UnitySceneManager.GetActiveScene().buildIndex;
+    }
 }
